@@ -40,7 +40,7 @@ local function create_message(self, key, value, kind, sample_rate, tags)
             table.insert(new_table, ",")
             table.insert(new_table, k)
             table.insert(new_table, "=")
-            table.insert(new_table, value)
+            table.insert(new_table, v)
         end
     end
     local tag_string = table.concat(new_table)
