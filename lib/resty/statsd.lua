@@ -115,10 +115,6 @@ function _M.count(self, key, value, sample_rate, tags)
     return queue(self, key, value, "c", sample_rate, tags)
 end
 
-function _M.set(self, key, value, tags)
-    return queue(self, key, value, "s", sample_rate, tags)
-end
-
 function _M.timing(self, key, value, tags)
     return queue(self, key, value, "ms", nil, tags)
 end
