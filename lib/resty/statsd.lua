@@ -74,6 +74,12 @@ send_messages = function(premature, self)
     -- mark as not started. openresty has no "repeat" so we must do logic ourselves
     self.timer_started = false
 
+    local q = self.queue
+    if #q == 0 then
+        set_timer(self)
+        return
+    end
+
     local sock = ngx.socket.udp()
     local ok, err = sock:setpeername(self.host, self.port)
     if not ok then
@@ -85,7 +91,6 @@ send_messages = function(premature, self)
 
     sock:settimeout(self.timeout)
 
-    local q = self.queue
     for i=1,#q do
         if q[i] ~= nil then
             local message = table.concat(q[i])
